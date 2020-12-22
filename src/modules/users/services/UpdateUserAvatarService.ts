@@ -1,5 +1,7 @@
 import path from 'path';
 import fs from 'fs';
+import { inject, injectable } from 'tsyringe';
+
 
 import AppError from '@shared/errors/AppError';
 import User from '@modules/users/infra/typeorm/entities/User';
@@ -11,8 +13,12 @@ interface IRequest {
   avatarFileName : string;
 }
 
+@injectable()
 class UpdateUSerAvatarService {
-  constructor(private usersRepository: IUserRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUserRepository
+    ) {}
   public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {
 
     const user = await this.usersRepository.findById(user_id);
