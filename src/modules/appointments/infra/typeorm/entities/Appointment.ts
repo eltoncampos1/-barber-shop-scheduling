@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 
@@ -25,7 +25,7 @@ class Appointment {
   @Column('time with time zone')
   date: Date;
 
-  @UpdateDateColumn()
+  @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
