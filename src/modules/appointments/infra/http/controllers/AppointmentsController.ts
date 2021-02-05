@@ -1,4 +1,3 @@
-import { parseISO } from 'date-fns';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -10,11 +9,10 @@ export default class AppointmentsCrontroller {
 
     const { provider_id, date } = request.body;
 
-    const parsedDate = parseISO(date);
 
     const createAppointment = container.resolve(CreateAppointmentService);
 
-    const appointment = await createAppointment.execute({date: parsedDate, provider_id, user_id})
+    const appointment = await createAppointment.execute({date, provider_id, user_id})
 
     return response.json(appointment);
   }
