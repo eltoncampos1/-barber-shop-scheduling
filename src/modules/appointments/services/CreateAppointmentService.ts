@@ -6,6 +6,7 @@ import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import INotificationRepositories from '@modules/notifications/repositories/INotificationsRepository';
 
 import AppError from '@shared/errors/AppError';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 
 interface IRequestDTO {
@@ -21,7 +22,10 @@ class CreateAppointmentService {
     private appointmentsRepository: IAppointmentsRepository,
 
     @inject('NotificationRepository')
-    private notificationRepository: INotificationRepositories
+    private notificationRepository: INotificationRepositories,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
     ){};
 
 
@@ -60,6 +64,11 @@ class CreateAppointmentService {
       content: `Novo agendamento para o dia ${dateFormatted}`
     })
 
+
+    await this.cacheProvider.invalidate(`provider-appointments:${provider_id}:${format(
+      appointmentDate,
+      'yyyy-M-d'
+    )}`)
 
     return appointment;
   };
