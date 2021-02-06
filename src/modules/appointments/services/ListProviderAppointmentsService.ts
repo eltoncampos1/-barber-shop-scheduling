@@ -34,7 +34,6 @@ class ListProviderAppointmentService {
         month,
         year
       })
-      console.log('Banco');
 
       await this.cacheProvider.save(
         cacheKey,
