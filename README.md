@@ -1,69 +1,71 @@
-# Recuperação de senha
+# Password recovery
 
-**RF**
+** RF **
 
-- O usuário deve poder recuperar sua senha informando o seu e-mail;
-- O usuário deve receber um e-mail com as instruções de recuperação de senha;
-- O usuário deve poder resetar a sua senha;
+- The user must be able to recover his password informing his e-mail;
+- The user should receive an email with password recovery instructions;
+- The user must be able to reset his password;
 
-**RNF**
+** RNF **
 
-- Utilizar Mailtrap para testar envios de e-mail em ambiente dev;
-- Utilizar o Amazon SES para envios em produção;
-- O envio de e-mail deve acontecer em segundo plano (background job);
+- Use Mailtrap to test e-mail sending in a dev environment;
+- Use Amazon SES for production shipments;
+- The sending of e-mail must happen in the background (background job);
 
-**RN**
 
-- O link enviado por e-mail para resetar senha, deve expirar em 2h;
-- O usuário precisa confirmar a nova senha ao resetar sua senha;
+** RN **
 
-# Atualizaação do perfil
+- The link sent by email to reset password, must expire in 2h;
+- The user needs to confirm the new password when resetting his password;
 
-**RF**
+# Profile update
 
-- O usuário deve poder atualizar seu perfil (nome, email, e senha);
+** RF **
 
-**RN**
+- The user must be able to update his profile (name, email, and password);
 
-- O usuário não poder alterar seu email para um email já utilizado;
-- Para atualizar sua senha, o usuário deve informar a senha antiga;
-- Para atualizar sua senha, o usuário precisa confirmar a nova senha;
+** RN **
 
-# Painel do prestador
+- The user cannot change his email to an email already used;
+- To update your password, the user must inform the old password;
+- To update your password, the user needs to confirm the new password;
 
-**RF**
+# Provider panel
 
-- O usuário deve poder listar seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que ouver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+** RF **
 
-**RNF**
+- The user must be able to list their schedules for a specific day;
+- The provider must receive a notification whenever he hears a new appointment;
+- The provider must be able to view unread notifications;
 
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no MongoDB;
-- As notificações do prestador devem ser enviadas em tempo-real utilizando Socket.io;
+** RNF **
 
-**RN**
+- The provider's schedules on the day must be stored in cache;
+- The provider's notifications must be stored in MongoDB;
+- The provider's notifications must be sent in time- real using Socket.io;
 
-- A notificação deve ter um status de lida ou não lida para que o prestador possa controlar;
 
-# Agendamento de serviços
+** RN **
 
-**RF**
+- The notification must have a read or unread status so that the provider can control;
 
-- O usuárui deve poder listar todos prestadores de serviço cadastrador;
-- O usuário deve poder listar  os dias de um mês com pelo menos um horário de um prestador disponível;
-- O usuário deve poder listar horários disponíveis em um dia específico de um prestador;
-- O usuário deve poder realizar um novo agendamento com um prestador;
+# Service scheduling
 
-**RNF**
+** RF **
 
-- A listagem de prestadores deve  ser armazanada em chache;
+- The user must be able to list all registered service providers;
+- The user must be able to list the days of a month with at least one schedule from an available provider;
+- The user must be able to list available times on a specific day for a provider;
+- The user must be able to make a new appointment with a provider;
 
-**RN**
+** RNF **
 
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponíveis entre 8h ás 18h(Primeiro ás 8h e último ás 17h);
-- O usuário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um horário que já passou;
-- O usuário não pode agendar serviços consigo mesmo;
+- The list of providers must be stored in chache;
+
+** RN **
+
+- Each appointment must last exactly 1 hour;
+- Appointments must be available between 8 am and 6 pm (First at 8 am and last at 5 pm);
+- The user cannot schedule at an already busy time;
+- The user cannot schedule an appointment that has already passed;
+- The user cannot schedule services with himself;
